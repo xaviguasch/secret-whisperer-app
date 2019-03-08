@@ -30,6 +30,8 @@ app.use(passport.session())
 mongoose.connect('mongodb://localhost:27017/userDB', {
     useNewUrlParser: true
 })
+mongoose.set('useCreateIndex', true)
+
 
 const userSchema = new mongoose.Schema({
     email: String,
@@ -44,6 +46,7 @@ passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 
 
 app.get('/', function (req, res) {
