@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const ejs = require('ejs')
 const mongoose = require('mongoose')
 const session = require('express-session')
-const passport = require('passpost')
+const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
 
 const app = express()
@@ -40,7 +40,7 @@ userSchema.plugin(passportLocalMongoose)
 
 const User = new mongoose.model('User', userSchema)
 
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
