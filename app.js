@@ -64,6 +64,9 @@ app.get('/register', function (req, res) {
 
 app.post('/register', function (req, res) {
 
+    User.register({
+        username: req.body.user
+    })
 
 })
 
